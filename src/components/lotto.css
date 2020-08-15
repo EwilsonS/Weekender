@@ -1,0 +1,11 @@
+.number {
+    background-color: orange;
+    color: white;
+    border-radius: 25%;
+}
+
+.lotto {
+    background-color: rgb(81, 119, 147);
+    height: 100%;
+    width: 50%;
+}

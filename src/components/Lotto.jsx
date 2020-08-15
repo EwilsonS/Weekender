@@ -1,25 +1,25 @@
-import React from 'react'
-import './lotto.css'
-import { render } from '@testing-library/react'
+import React from "react";
+import "./lotto.css";
 
-class Lotto extends React.Component {
-
-    lottoNumberGenerator = () => {
-        return ; 
+export default function Lotto() {
+    const randNum = () => {
+        let lottoPick;
+        lottoPick = Math.floor(Math.random() * 90) 
+        if(lottoPick < 10) {
+            lottoPick = `0${lottoPick}`
+        }
+        return lottoPick
     }
-
-    render() {
-        return (
-            <div className="lotto">
-            <span className="number">{Math.floor(Math.random() * 90)}</span>
-            <span className="number">{Math.floor(Math.random() * 90)}</span>
-            <span className="number">{Math.floor(Math.random() * 90)}</span>
-            <span className="number">{Math.floor(Math.random() * 90)}</span>
-            <span className="number">{Math.floor(Math.random() * 90)}</span>
-           
+  return (
+    <div className="lotto">
+        <div className="number-div">
+            <div className="number">{randNum()}</div>
+            <div className="number">{randNum()}</div>
+            <div className="number">{randNum()}</div>
+            <div className="number">{randNum()}</div>
+            <div className="number">{randNum()}</div>
         </div>
-        )
-    }
-}
 
-export default Lotto
+    </div>
+  );
+}

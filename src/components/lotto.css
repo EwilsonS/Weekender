@@ -1,11 +1,25 @@
 .number {
+    size: 2em;
     background-color: orange;
     color: white;
-    border-radius: 25%;
+    border-radius: 50%;
+    margin: .5em;
+    padding: .25em;
+    position: relative;
+    width: 4em;
+    height: 4em;
+
+}
+
+.number-div {
+    display: flex;
+    position: relative;
+    top: 35%;
 }
 
 .lotto {
     background-color: rgb(81, 119, 147);
     height: 100%;
-    width: 50%;
+    width: 100%;
+    text-align: center;
 }

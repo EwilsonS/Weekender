@@ -1,9 +1,15 @@
-.weather-div {
-  height: 20em;
-  width: 50%;
+.main-top {
+  display: flex;  
 }
 
-.lotto-div {
-  height: 20em;
+.main-bottom {
+  display: flex;  
+}
+
+.weather-div, 
+.lotto-div,
+.cocktail-div,
+.events-div {
+  height: 28em;
   width: 50%;
 }

@@ -1,5 +1,6 @@
-.weather {
+.events {
     background-color: rgb(92, 134, 165);
     height: 100%;
     width: 100%;
-  }
+    text-align: center;
+}

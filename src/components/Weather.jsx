@@ -7,48 +7,67 @@ class Weather extends React.Component {
     weatherLoaded: false,
     forecast: [],
     city: undefined,
+    state: undefined,
   };
 
   handleInputChange = (e) => {
+    // e.preventDefault()
     const { name, value } = e.target;
     this.setState({
       [name]: value,
     });
   };
 
-  getWeatherData = (city) => {
-    const apiKey = `75fb70b17ec4c5baa3c8c74faabf1ad3`
-    const apiCall = `api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
-    let forecast;
-    axios.get(apiCall).then((res) => {
-      forecast = res.data.weatherdata.forecast;
+  getWeatherData = async (city, state) => {
+    const apiKey = `f7593fcfce6d212b9291608cf4820b91`
+    const apiCall = `https://api.openweathermap.org/data/2.5/forecast?q=${city},${state}&appid=${apiKey}`;
+    await axios.get(apiCall)
+    // console.log(res)
+    // res.data.list[0].main.feels_like
+    .then(res => {
+      let curerentTemp = res.data.list[0].main.feels_like
+      curerentTemp = (curerentTemp - 273.15) * (9/5) + 32
       this.setState({
         weatherLoaded: true,
-        forecast: forecast,
+        forecast: curerentTemp,
       });
+    }).catch(err => {
+      console.log("ERRR:::", err, city)
     });
 
     console.log("HERE::::", this.state)
+    return
   };
 
   render() {
     return (
       <div className="weather">
         <div>
-          <form>
+          <form onSubmit={() => this.getWeatherData(this.state.city, this.state.state)}>
             <input
               type="text"
               placeholder="city"
+              name="city"
               value={this.state.city}
               onChange={this.handleInputChange}
             />
-            <button type="submit" onClick={this.getWeatherData(this.state.city)}>
+             <input
+              type="text"
+              placeholder="state"
+              name="state"
+              value={this.state.state}
+              onChange={this.handleInputChange}
+            />
+            <button 
+              type="submit" 
+              value="send"
+              >
               Send
             </button>
           </form>
         </div>
         {this.state.weatherLoaded === true ? (
-          <div>{this.state.forecast}</div>
+          <div>Feels like {this.state.forecast} degrees in {this.state.city}</div>
         ) : (
           <div>no data</div>
         )}
